@@ -182,7 +182,55 @@ module HeaderSorterTest #(
 		#5
 
 		// Test 4: IO 4DW 
+
 		// Test 5: Memory Read 3DW 
+		stim(128'hFFFFFFFC5555550000880C00,
+		32'h00000000,
+		0,
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk); 
+	 
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		stim(128'h0,
+		32'h00000000,
+		1,				// Set next_ready to high 
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk);
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		stim(128'h0,
+		32'h00000000,
+		0,				// Set next_ready to low 
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk);
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5 
 		// Test 6: Memory Read 4DW 
 		// Test 7: Memomry Write 3DW 
 		// Test 8: Memory Write 4DW 
@@ -202,5 +250,4 @@ module HeaderSorterTest #(
 		$dumpvars(0,HeaderSorterTest);
 	end 
 endmodule 
-
 

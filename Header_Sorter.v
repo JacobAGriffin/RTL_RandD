@@ -92,7 +92,7 @@ module Header_Sorter #(
 			header_holder = in_data_header;
  
 			// Memory read request 
-			if (header_holder [31:29] == 3'b000 || header_holder [31:29] == 3'b001 && header_holder [28:24] == 5'b00000) 
+			if (header_holder [28:24] == 5'b00000 && (header_holder [31:29] == 3'b000 || header_holder [31:29] == 3'b001)) 
 			begin 
 				// Memory hardware subunit = 2 
 				link_destination_holder = 3'b010; 
@@ -179,7 +179,7 @@ module Header_Sorter #(
 				end
 	
 			//Memory write request
-			else if (header_holder [31:29] == 3'b010 || header_holder [31:29] == 3'b011 && header_holder [28:24] == 5'b00000)
+			else if (header_holder [28:24] == 5'b00000 && (header_holder [31:29] == 3'b010 || header_holder [31:29] == 3'b011))
 			begin
 
 				link_destination_holder = 3'b010; 
@@ -356,4 +356,3 @@ module Header_Sorter #(
 		
 	end
 endmodule
-
