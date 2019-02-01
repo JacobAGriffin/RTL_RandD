@@ -8,6 +8,7 @@ module Header_Sorter #(
 	sorted_header,
 	pass_through_payload,
 	link_destination,
+	ready,
 	in_data_header,
 	in_data_payload,
 	next_ready,
@@ -24,12 +25,12 @@ module Header_Sorter #(
 	output reg [95:0] sorted_header; 		
 	output reg [31:0] pass_through_payload; 
 	output reg [2:0] link_destination; 	// Tell next stage what hardware subunit buffer to send data to 
+	output reg ready;
 
 // Declare middle ports 
 	reg [127:0] header_holder;
 	reg [95:0] adjusted_completion_header; 		// Newly formatted header bits for output to ILR 
 	reg [31:0] payload_holder;
-	reg ready; 
 	reg translation_complete;
 	reg header_passed; 
 	reg incoming_header; 			// Flag stating if there is header data 
@@ -92,7 +93,7 @@ module Header_Sorter #(
 			header_holder = in_data_header;
  
 			// Memory read request 
-			if (header_holder [31:29] == 3'b000 || header_holder [31:29] == 3'b001 && header_holder [28:24] == 5'b00000) 
+			if (header_holder [28:24] == 5'b00000 && (header_holder [31:29] == 3'b000 || header_holder [31:29] == 3'b001)) 
 			begin 
 				// Memory hardware subunit = 2 
 				link_destination_holder = 3'b010; 
@@ -179,7 +180,7 @@ module Header_Sorter #(
 				end
 	
 			//Memory write request
-			else if (header_holder [31:29] == 3'b010 || header_holder [31:29] == 3'b011 && header_holder [28:24] == 5'b00000)
+			else if (header_holder [28:24] == 5'b00000 && (header_holder [31:29] == 3'b010 || header_holder [31:29] == 3'b011))
 			begin
 
 				link_destination_holder = 3'b010; 
@@ -356,4 +357,3 @@ module Header_Sorter #(
 		
 	end
 endmodule
-

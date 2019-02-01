@@ -55,6 +55,7 @@ module HeaderSorterTest #(
 	wire [95:0] sorted_header; 		// Output data from MemoryRouting sent to ILR
 	wire [31:0] pass_through_payload;
 	wire [2:0] link_destination; 		// Link # corresponding to the data 
+	wire ready; 
 
 	// Helper
 	reg [7:0] passed;
@@ -67,6 +68,7 @@ module HeaderSorterTest #(
 		.sorted_header (sorted_header),
 		.pass_through_payload (pass_through_payload),
 		.link_destination (link_destination),
+		.ready(ready),
 		.in_data_header (in_data_header),
 		.in_data_payload (in_data_payload),
 		.next_ready (next_ready),
@@ -182,7 +184,55 @@ module HeaderSorterTest #(
 		#5
 
 		// Test 4: IO 4DW 
+
 		// Test 5: Memory Read 3DW 
+		stim(128'hFFFFFFFC5555550000880C00,
+		32'h00000000,
+		0,
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk); 
+	 
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		stim(128'h0,
+		32'h00000000,
+		1,				// Set next_ready to high 
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk);
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		stim(128'h0,
+		32'h00000000,
+		0,				// Set next_ready to low 
+		0,
+		in_data_header,
+		in_data_payload,
+		next_ready,
+		clk);
+		clk = 0;
+		#5
+		clk = 1;
+		#5
+		clk = 0;
+		#5
+		clk = 1;
+		#5 
 		// Test 6: Memory Read 4DW 
 		// Test 7: Memomry Write 3DW 
 		// Test 8: Memory Write 4DW 
@@ -202,5 +252,4 @@ module HeaderSorterTest #(
 		$dumpvars(0,HeaderSorterTest);
 	end 
 endmodule 
-
 
