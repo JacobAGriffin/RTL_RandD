@@ -1,41 +1,38 @@
 `timescale 1ns / 1ps 
 `default_nettype none 
 
-module BufferMemorySubBlock #(
-	parameter DATA_WIDTH = 40 // Adjust to include header bits
-) (
+module BufferMemorySubBlock (
+	writing,
 	out_empty,
 	out_data,
 	clk,
 	reset,
-	write,
-	in_empty,
-	in_data
+	in_data,
+	in_empty
 ); 
 
 // Declare input ports
 
-input 	clk, 			// Clock signal
-	write,			// Write flag
-	reset,			// Reset flag
-	in_empty;		// Empty flag
+input 	clk,
+	reset,
+	in_empty;
 
 
-input [DATA_WIDTH-1:0] in_data; // Input data 
+input [34:0] in_data;
 	
 // Declare output ports
 
-output reg out_empty;		// Status of memory block
+output reg	out_empty,
+		writing;
 
-output reg [DATA_WIDTH-1:0] out_data; 	// Output data
+output reg [34:0] out_data;
 
-//Initial Blocks
+//Declare Middle Ports
 
-initial
-begin
-	out_data <= {DATA_WIDTH{1'b0}};
-	out_empty <= 1'b1;
-end
+reg	middle_reset,
+	middle_empty;
+
+reg [34:0] middle_data;
 
 //Assign Statements
 
@@ -43,17 +40,34 @@ end
 
 always @(posedge clk)
 begin
-// Resetting buffer memory if reset flag is 1
-	if (reset == 1)
+	middle_data = in_data;
+	middle_reset = reset;
+	middle_empty = in_empty;
+	#1
+	if (middle_reset == 1)
 	begin
-		out_data <= 0;
-		out_empty <= 1;
+		out_data = 0;
+		out_empty = 1;
+		middle_data = 0;
+		writing = 0;
 	end
-
-	else if (reset == 0 && write == 1)
+	else
 	begin
-		out_data <= in_data;
-		out_empty <= in_empty;
+		if (in_empty == 1)
+		begin
+			out_data = 35'b0;
+			out_empty = 1;
+		end
+		if (out_empty == 1 && middle_data != 0)
+		begin
+			writing = 1;
+			out_data = middle_data;
+			out_empty = 0;
+		end
+		else
+		begin
+			writing = 0;
+		end
 	end
 end
 
