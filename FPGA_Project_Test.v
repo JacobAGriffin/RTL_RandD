@@ -521,11 +521,11 @@ module FPGA_Project_Test;
 		#1500000
 		if(out0_count1 != out0_count2)
 		begin
-			$display("Not enough output on lane 0: Out = %h, Needed = %h", out0_count2, out0_count1);
+			$display("Not enough output on lane 0: Out = %d, Needed = %d", out0_count2, out0_count1);
 		end
 		else
 		begin
-			$display("Lane 0 has enough output: Out = %h, Needed = %h", out0_count2, out0_count1);
+			$display("Lane 0 has enough output: Out = %d, Needed = %d", out0_count2, out0_count1);
 		end
 		
 		for (j0 = 0; j0 < out0_count2; j0 = j0 + 1)
@@ -544,7 +544,6 @@ module FPGA_Project_Test;
 			end
 		end
 		$display("Lane 0 has passed = %d", passed0);
-		$display("Lane 0 has enough output: Out = %d, Needed = %d", out0_count2, out0_count1);
 		//allPassed0(passed0);
 	end
 
@@ -555,11 +554,11 @@ module FPGA_Project_Test;
 		#1500000
 		if(out1_count1 != out1_count2)
 		begin
-			$display("Not enough output on lane 1: Out = %h, Needed = %h", out1_count2, out1_count1);
+			$display("Not enough output on lane 1: Out = %d, Needed = %d", out1_count2, out1_count1);
 		end
 		else
 		begin
-			$display("Lane 1 has enough output: Out = %h, Needed = %h", out1_count2, out1_count1);
+			$display("Lane 1 has enough output: Out = %d, Needed = %d", out1_count2, out1_count1);
 		end
 		
 		for (j1 = 0; j1 < out1_count2; j1 = j1 + 1)
@@ -578,7 +577,6 @@ module FPGA_Project_Test;
 			end
 		end
 		$display("Lane 1 has passed = %d", passed1);
-		$display("Lane 1 has enough output: Out = %d, Needed = %d", out1_count2, out1_count1);
 		//allPassed1(passed1);
 	end
 
@@ -589,11 +587,11 @@ module FPGA_Project_Test;
 		#1500000
 		if(out2_count1 != out2_count2)
 		begin
-			$display("Not enough output on lane 2: Out = %h, Needed = %h", out2_count2, out2_count1);
+			$display("Not enough output on lane 2: Out = %d, Needed = %d", out2_count2, out2_count1);
 		end
 		else
 		begin
-			$display("Lane 2 has enough output: Out = %h, Needed = %h", out2_count2, out2_count1);
+			$display("Lane 2 has enough output: Out = %d, Needed = %d", out2_count2, out2_count1);
 		end
 		
 		for (j2 = 0; j2 < out2_count2; j2 = j2 + 1)
@@ -612,7 +610,6 @@ module FPGA_Project_Test;
 			end
 		end
 		$display("Lane 2 has passed = %d", passed2);
-		$display("Lane 2 has enough output: Out = %d, Needed = %d", out2_count2, out2_count1);
 		//allPassed2(passed2);
 	end
 
@@ -623,11 +620,11 @@ module FPGA_Project_Test;
 		#1500000
 		if(out3_count1 != out3_count2)
 		begin
-			$display("Not enough output on lane 3: Out = %h, Needed = %h", out3_count2, out3_count1);
+			$display("Not enough output on lane 3: Out = %d, Needed = %d", out3_count2, out3_count1);
 		end
 		else
 		begin
-			$display("Lane 3 has enough output: Out = %h, Needed = %h", out3_count2, out3_count1);
+			$display("Lane 3 has enough output: Out = %d, Needed = %d", out3_count2, out3_count1);
 		end
 		
 		for (j3 = 0; j3 < out3_count2; j3 = j3 + 1)
@@ -646,7 +643,6 @@ module FPGA_Project_Test;
 			end
 		end
 		$display("Lane 3 has passed = %d", passed3);
-		$display("Lane 3 has enough output: Out = %d, Needed = %d", out3_count2, out3_count1);
 		//allPassed3(passed3);
 	end
 
@@ -659,7 +655,7 @@ module FPGA_Project_Test;
 
 	initial
 	begin
-		#2000000;
+		#1505000;
 		$finish;
 	end
 	
