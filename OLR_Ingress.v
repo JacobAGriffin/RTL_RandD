@@ -15,18 +15,18 @@ module OLR_Ingress(
 );
 
 // Declare inputs 
-	input [34:0] 	header_in;
-	input [31:0]	payload_in;
-	input [3:0]	completionstatus_in;
-	input		clk,
-			reset,
-			sorter_ready;
+	input [34:0] 	header_in;	// Completion header from upstream HSB
+	input [31:0]	payload_in;	// Payload from Hardware Subunit
+	input [3:0]	completionstatus_in;	//Completion type from Hardware Subunit
+	input		clk,	// clock signal
+			reset,	//reset signal
+			sorter_ready;	// ready signal from downstream Sorter
 	
 // Declare output ports		    	
-	output reg [135:0]	header_out;
-	output reg [39:0]	payload_out;
-	output reg 		ready1,
-				ready2;
+	output reg [135:0]	header_out;		//Concatenated input header that is outputted to Sorter to be formed into complete TLP
+	output reg [39:0]	payload_out;	// Output payload to Sorter
+	output reg 		ready1,		// Ready signal to alert HSIB subsystem that the OLR is ready for header input
+				ready2;			// Ready signal to alert Hardware Subunit that the OLR is ready for header input
  
 // Declare Middle Ports 
 

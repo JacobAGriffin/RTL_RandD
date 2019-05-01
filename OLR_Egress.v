@@ -18,21 +18,21 @@ module OLR_Egress (
 );
 
 // Declare inputs 
-	input [103:0] 	header_in;
-	input [39:0]	payload_in;
-	input		clk,
-			reset,
-			buffer_ready0,
-			buffer_ready1,
-			buffer_ready2,
-			buffer_ready3;
+	input [103:0] 	header_in;		// Sorted TLP from Sorter submodule
+	input [39:0]	payload_in;		// Payload routed through Sorter from Ingress
+	input		clk,				// clock signal
+			reset,					// reset signal
+			buffer_ready0,			// Ready signal from OLB - lane 0
+			buffer_ready1,			// Ready signal from OLB - lane 1
+			buffer_ready2,			// Ready signal from OLB - lane 2
+			buffer_ready3;			// Ready signal from OLB - lane 3
 	
 // Declare output ports		    	
-	output reg [34:0]	data_out0,
-				data_out1,
-				data_out2,
-				data_out3;
-	output reg 		ready;
+	output reg [34:0]	data_out0,	// Output bus to OLB - lane 0
+				data_out1,			// Output bus to OLB - lane 1
+				data_out2,			// Output bus to OLB - lane 2
+				data_out3;			// Output bus to OLB - lane 3
+	output reg 		ready;			// Ready signal for upstream Sorter submodule
  
 // Declare Middle Ports 
 	reg [103:0]	header_register,
