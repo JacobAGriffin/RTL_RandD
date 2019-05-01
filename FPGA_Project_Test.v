@@ -134,21 +134,21 @@ module FPGA_Project_Test;
 		out_file0,	//file that contains the corresponding expected output TLPs for link 0
 		out_file1,	//file that contains the corresponding expected output TLPs for link 1
 		out_file2,	//file that contains the corresponding expected output TLPs for link 2
-		out_file3,	//file that contains the corresponding expected output TLPs for link 3
+		out_file3;	//file that contains the corresponding expected output TLPs for link 3
 
 
-   	reg [31:0]	TLPin_holder0 [200000:0];		//register used to store each TLP on the input side
-	reg [31:0]	TLPin_holder1 [200000:0];		//register used to store each TLP on the input side
-	reg [31:0]	TLPin_holder2 [200000:0];		//register used to store each TLP on the input side
-	reg [31:0]	TLPin_holder3 [200000:0];		//register used to store each TLP on the input side
-	reg [31:0]	TLPout_actual0 [200000:0]; 		//register used to store each TLP on the output side
-	reg [31:0]	TLPout_actual1 [200000:0];		//register used to store each TLP on the output side
-	reg [31:0]	TLPout_actual2 [200000:0]; 		//register used to store each TLP on the output side
-	reg [31:0]	TLPout_actual3 [200000:0]; 		//register used to store each TLP on the output side
-	reg [31:0]	TLPout_expected0 [200000:0]; 		//register used to store the expected output for each TLP
-	reg [31:0]	TLPout_expected1 [200000:0];		//register used to store the expected output for each TLP
-	reg [31:0]	TLPout_expected2 [200000:0]; 		//register used to store the expected output for each TLP
-	reg [31:0]	TLPout_expected3 [200000:0]; 		//register used to store the expected output for each TLP
+	reg [31:0]	TLPin_holder0 [200000:0],		//register used to store each TLP on the input side
+			TLPin_holder1 [200000:0],		//register used to store each TLP on the input side
+			TLPin_holder2 [200000:0],		//register used to store each TLP on the input side
+			TLPin_holder3 [200000:0],		//register used to store each TLP on the input side
+			TLPout_actual0 [200000:0], 		//register used to store each TLP on the output side
+			TLPout_actual1 [200000:0],		//register used to store each TLP on the output side
+			TLPout_actual2 [200000:0], 		//register used to store each TLP on the output side
+			TLPout_actual3 [200000:0], 		//register used to store each TLP on the output side
+			TLPout_expected0 [200000:0], 		//register used to store the expected output for each TLP
+			TLPout_expected1 [200000:0],		//register used to store the expected output for each TLP
+			TLPout_expected2 [200000:0], 		//register used to store the expected output for each TLP
+			TLPout_expected3 [200000:0]; 		//register used to store the expected output for each TLP
 
 	// Instantiate the Unit Under Test (UUT)
 	FPGA_Project uut (
@@ -291,8 +291,8 @@ module FPGA_Project_Test;
 		if(data_stall0 == 0 && ILR0_ready == 1)
 		begin
 			stim0(				//stim function inputs the data
-			TLPin_holder0[in0_count2],
-			in_data0
+				TLPin_holder0[in0_count2],
+				in_data0
 			);
 			data_stall0 = 1;		//hold the data high for one cycle to simulate the timing scheme
 		end
@@ -300,8 +300,8 @@ module FPGA_Project_Test;
 		begin
 			data_stall0 = 0;		//drop the data stall signal so that the data can be dropped next cycle
 			stim0(
-			TLPin_holder0[in0_count2],
-			in_data0
+				TLPin_holder0[in0_count2],
+				in_data0
 			);
 			in0_count2 = in0_count2 + 1;	//increment the vector file index, to move to the next 32 bits of TLP
 		end
@@ -314,8 +314,8 @@ module FPGA_Project_Test;
 		if(data_stall1 == 0 && ILR1_ready == 1)
 		begin
 			stim1(				//stim function inputs the data
-			TLPin_holder1[in1_count2],
-			in_data1
+				TLPin_holder1[in1_count2],
+				in_data1
 			);
 			data_stall1 = 1;		//hold the data high for one cycle to simulate the timing scheme
 		end
@@ -323,8 +323,8 @@ module FPGA_Project_Test;
 		begin
 			data_stall1 = 0;		//drop the data stall signal so that the data can be dropped next cycle
 			stim1(
-			TLPin_holder1[in1_count2],
-			in_data1
+				TLPin_holder1[in1_count2],
+				in_data1
 			);
 			in1_count2 = in1_count2 + 1;	//increment the vector file index, to move to the next 32 bits of TLP
 		end
@@ -337,8 +337,8 @@ module FPGA_Project_Test;
 		if(data_stall2 == 0 && ILR2_ready == 1)
 		begin
 			stim2(				//stim function inputs the data
-			TLPin_holder2[in2_count2],
-			in_data2
+				TLPin_holder2[in2_count2],
+				in_data2
 			);
 			data_stall2 = 1;		//hold the data high for one cycle to simulate the timing scheme
 		end
@@ -346,8 +346,8 @@ module FPGA_Project_Test;
 		begin
 			data_stall2 = 0;		//drop the data stall signal so that the data can be dropped next cycle
 			stim2(
-			TLPin_holder2[in2_count2],
-			in_data2
+				TLPin_holder2[in2_count2],
+				in_data2
 			);
 			in2_count2 = in2_count2 + 1;	//increment the vector file index, to move to the next 32 bits of TLP
 		end
@@ -360,8 +360,8 @@ module FPGA_Project_Test;
 		if(data_stall3 == 0 && ILR3_ready == 1)
 		begin
 			stim3(				//stim function inputs the data
-			TLPin_holder3[in3_count2],
-			in_data3
+				TLPin_holder3[in3_count2],
+				in_data3
 			);
 			data_stall3 = 1;		//hold the data high for one cycle to simulate the timing scheme
 		end
@@ -369,8 +369,8 @@ module FPGA_Project_Test;
 		begin
 			data_stall3 = 0;		//drop the data stall signal so that the data can be dropped next cycle
 			stim3(
-			TLPin_holder3[in3_count2],
-			in_data3
+				TLPin_holder3[in3_count2],
+				in_data3
 			);
 			in3_count2 = in3_count2 + 1;	//increment the vector file index, to move to the next 32 bits of TLP
 		end
