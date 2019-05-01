@@ -58,7 +58,7 @@ begin
 	buffer0_register = buffer_ready0;
 	buffer1_register = buffer_ready1;
 	buffer2_register = buffer_ready2;
-	//#1 to simulate the functionality of a physical system(can perhaps be removed on physical implementations)
+	//#1 to simulate the functionality of a physical system(can be removed on physical implementations)
 	#1
 	
 	//initialization sequence
@@ -286,35 +286,3 @@ begin
 	end
 end
 endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
