@@ -194,7 +194,7 @@ module FPGA_Project (
 		.buffer_ready2(ready_I3_B2)
 	);
 
-	Buffer HSIB0 (
+	Buffer HSB0 (
 		.clk(clk),
 		.reset(reset),
 		.in_ready(ready_B0_O0),
@@ -209,7 +209,7 @@ module FPGA_Project (
 		.out_data(data_B0)
 	);
 
-	Buffer HSIB1 (
+	Buffer HSB1 (
 		.clk(clk),
 		.reset(reset),
 		.in_ready(ready_B1_O1),
@@ -224,7 +224,7 @@ module FPGA_Project (
 		.out_data(data_B1)
 	);
 
-	Buffer HSIB2 (
+	Buffer HSB2 (
 		.clk(clk),
 		.reset(reset),
 		.in_ready(ready_B2_O2),
