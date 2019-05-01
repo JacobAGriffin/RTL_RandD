@@ -30,19 +30,14 @@ module BufferMux (
 		
 // Declare output ports
 
-	output reg [34:0] out_data; 	// Output data
 	output reg	ready0,
 			ready1,
 			ready2,
 			ready3;
+	output reg [34:0] out_data; 	// Output data
+	
 // Declare Middle Ports
 
-	reg 	[1:0] selector;
-	reg 	[34:0] 	middle_in_data0,
-			middle_in_data1,
-			middle_in_data2,
-			middle_in_data3,
-			muxed_data;
 	reg 	middle_next_ready,
 		middle_mem_full,
 		multiwidth,
@@ -50,6 +45,12 @@ module BufferMux (
 		data_sent,
 		ready_wait,
 		ready_logic;
+	reg 	[1:0] selector;
+	reg 	[34:0] 	middle_in_data0,
+			middle_in_data1,
+			middle_in_data2,
+			middle_in_data3,
+			muxed_data;
 
 //Always Blocks
 
